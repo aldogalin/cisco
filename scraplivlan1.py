@@ -16,7 +16,9 @@ config_commands = [
     "vlan 100",
     "name MiVLAN",
     "end",
-    "shutdown"
+    "exit",
+    "shutdown",
+    "write memory"
 ]
 
 # Establecer la conexión con el dispositivo
