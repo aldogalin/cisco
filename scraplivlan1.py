@@ -11,10 +11,12 @@ device = {
 
 # Comandos de configuración para crear una VLAN
 config_commands = [
+    "enable",
     "configure terminal",
     "vlan 100",
     "name MiVLAN",
-    "end"
+    "end",
+    "shutdown"
 ]
 
 # Establecer la conexión con el dispositivo
@@ -24,3 +26,43 @@ with IOSXEDriver(**device) as conn:
 
 # Imprimir la salida del comando
 print(response.result)
+
+
+from scrapli.driver.core import IOSXEDriver
+
+def configurar_vlan(host, username, password, vlan_id, vlan_name):
+    # Definir los detalles de conexión al dispositivo
+    device = {
+        "host": host,
+        "auth_username": username,
+        "auth_password": password,
+        "transport": "telnet",
+        "port": 23
+    }
+
+    # Comandos de configuración para crear una VLAN
+    config_commands = [
+        "configure terminal",
+        f"vlan {vlan_id}",
+        f"name {vlan_name}",
+        "end"
+    ]
+
+    # Establecer la conexión con el dispositivo
+    with IOSXEDriver(**device) as conn:
+        # Enviar los comandos de configuración al dispositivo
+        response = conn.send_configs(config_commands)
+
+    # Retornar la salida del comando
+    return response.result
+
+# Ejemplo de uso de la función
+host = "192.168.1.1"
+username = "tu_usuario"
+password = "tu_contraseña"
+vlan_id = 100
+vlan_name = "MiVLAN"
+
+output = configurar_vlan(host, username, password, vlan_id, vlan_name)
+print(output)
+
