@@ -1,0 +1,46 @@
+enable
+configure terminal
+hostname SW1
+exit
+
+enable
+configure terminal
+vlan 201
+name sistemas vlan201
+exit
+
+enable
+configure terminal
+interface Gi0/1
+switchport mode access
+switchport access vlan 201
+exit
+
+
+enable
+configure terminal
+interface Gi0/2
+switchport mode access
+switchport access vlan 201
+no shutdown
+exit
+exit
+write memory
+
+
+enable
+configure terminal
+vlan 301
+name ventas vlan301
+
+
+enable
+configure terminal
+interface Gi0/3
+switchport mode access
+switchport access vlan 301
+no shutdown
+exit
+exit
+write memory
+

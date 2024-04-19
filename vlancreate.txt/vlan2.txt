@@ -1,0 +1,25 @@
+enable
+    configure terminal
+        hostname SW2
+            exit
+
+#interfaces
+Gi0/0, Gi0/1, Gi0/2, Gi0/3
+Gi1/0, Gi1/1, Gi1/2, Gi1/3
+Gi2/0, Gi2/1, Gi2/2, Gi2/3
+
+Gi0/0 Only use for connection truck 
+Gi0/1 PC1 SISTEMAS
+Gi0/2 PC2 VENTAS
+Gi0/3 PC3 VENTAS
+Gi1/0 PC4 MARKETING
+Gi1/1 PC5 MARKETING
+
+
+
+
+enable
+    configure terminal
+        VlAN 201
+            name sistemas vlan201
+                exit    
