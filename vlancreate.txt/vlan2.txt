@@ -9,11 +9,13 @@ Gi1/0, Gi1/1, Gi1/2, Gi1/3
 Gi2/0, Gi2/1, Gi2/2, Gi2/3
 
 Gi0/0 Only use for connection truck 
-Gi0/1 PC1 SISTEMAS
-Gi0/2 PC2 VENTAS
-Gi0/3 PC3 VENTAS
-Gi1/0 PC4 MARKETING
-Gi1/1 PC5 MARKETING
+Gi0/1 PC1 SISTEMAS vlan201
+Gi0/2 PC2 VENTAS vlan301
+Gi0/3 PC3 VENTAS vlan301 
+Gi1/0 PC4 MARKETING vlan350
+Gi1/1 PC5 MARKETING vlan350
+Gi1/2 PC5 VENTAS vlan301
+Gi1/3 PC5 VENTAS vlan301
 
 
 
@@ -23,3 +25,101 @@ enable
         VlAN 201
             name sistemas vlan201
                 exit    
+                    exit
+                            write memory
+enable
+    configure terminal
+        VlAN 301
+            name ventas vlan301
+                exit   
+                    exit
+                            write memory
+enable
+    configure terminal 
+        vlan 350
+            name MARKETING vlan350
+                exit
+                    exit
+                            write memory
+
+enable
+    configure terminal
+        interface Gi0/1  
+            switchport mode access
+                switchport access vlan 201
+                    no shutdown
+                        exit
+                            exit
+                            
+
+enable
+    configure terminal
+        interface Gi0/2
+            switchport access vlan 301
+                no shutdown
+                    exit
+                        exit
+                            
+
+enable
+    configure terminal
+        interface Gi0/3
+            switchport access vlan 301
+                no shutdown
+                    exit
+                        exit
+                           
+
+enable
+    configure terminal
+        interface Gi1/0
+            switchport access vlan 350
+                no shutdown
+                    exit
+                        exit
+                            
+
+enable
+    configure terminal
+        interface Gi1/0
+            switchport access vlan 350
+                no shutdown
+                    exit 
+                        exit
+                           
+
+enable
+    configure terminal
+        interface Gi1/1 
+            switchport access vlan 350
+                no shutdown
+                    exit
+                        exit
+                           
+
+enable
+    configure terminal
+        interface Gi1/2
+            switchport access vlan 301
+                no shutdown
+                    exit
+                        exit
+                            
+
+enable
+    configure terminal
+        interface Gi1/2
+            switchport access vlan 301
+                no shutdown
+                    exit
+                        exit
+
+enable
+    configure terminal
+        interface Gi1/3
+            switchport access vlan 301
+                no shutdown
+                    exit
+                        exit
+                            
+                            
